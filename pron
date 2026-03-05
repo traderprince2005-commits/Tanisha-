@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>For Tanisha ❤️</title>
+<style>
+body{
+  text-align:center;
+  font-family:Arial;
+  background:#ff9aa2;
+  padding-top:100px;
+  overflow:hidden;
+}
+button{
+  padding:15px 30px;
+  font-size:20px;
+  margin:10px;
+  cursor:pointer;
+  border:none;
+  border-radius:10px;
+}
+#yes{background:green;color:white;}
+#no{background:red;color:white;position:absolute;}
+#home{display:none;}
+#passwordPage{display:block;}
+#main{display:none;}
+#rosePage{display:none;}
+.heart{
+  position:fixed;
+  top:-20px;
+  font-size:25px;
+  animation:fall 4s linear infinite;
+}
+@keyframes fall{
+  0%{transform:translateY(-20px);}
+  100%{transform:translateY(100vh);}
+}
+</style>
+</head>
+<body>
+
+<!-- PASSWORD PAGE -->
+<div id="passwordPage">
+<h1>💌 Secret Gate 💌</h1>
+<p>Who is your partner?</p>
+<input type="text" id="partner" placeholder="Type name here">
+<button id="submitBtn">Submit</button>
+<h3 id="passMsg" style="color:red;"></h3>
+</div>
+
+<!-- HOME PAGE -->
+<div id="home">
+<h1>Hi Tanisha ❤️</h1>
+<p>I have something special for you...</p>
+<button onclick="start()">Open Message 💌</button>
+</div>
+
+<!-- PROPOSAL PAGE -->
+<div id="main">
+<h1>Will you marry me Tanisha? 💍</h1>
+<p>In a world full of people, my heart found its home in you.</p>
+<p>Prince only has one wish in life — to walk every moment with you forever. ❤️</p>
+<button id="yes" onclick="yesClick()">Yes ❤️</button>
+<button id="no">I Need Time 😅</button>
+</div>
+
+<!-- ROSE PAGE -->
+<div id="rosePage">
+<h1>🌹 For You Tanisha 🌹</h1>
+<p>You are very special to me ❤️</p>
+<button onclick="accept()">Accept</button>
+<h2 id="msg"></h2>
+</div>
+
+<script>
+/* PASSWORD CHECK */
+document.getElementById("submitBtn").addEventListener("click",function(){
+  let val = document.getElementById("partner").value.trim().toLowerCase();
+  if(val === "prince"){
+    document.getElementById("passwordPage").style.display="none";
+    document.getElementById("home").style.display="block";
+  } else {
+    document.getElementById("passMsg").innerText = "❌ Try again!";
+  }
+});
+
+/* HOME TO PROPOSAL */
+function start(){
+  document.getElementById("home").style.display="none";
+  document.getElementById("main").style.display="block";
+}
+
+/* NO BUTTON SUPER FAST MOVE */
+let noBtn = document.getElementById("no");
+
+// Continuous fast move every 0.3 second
+setInterval(()=>{
+  moveNoButton();
+},300);
+
+// Move button on mouse hover too
+noBtn.addEventListener("mouseover", function(){
+  moveNoButton();
+});
+
+function moveNoButton(){
+  let x = Math.random()*(window.innerWidth-150);
+  let y = Math.random()*(window.innerHeight-50);
+  noBtn.style.left = x + "px";
+  noBtn.style.top = y + "px";
+}
+
+/* YES CLICK */
+function yesClick(){
+  let hug=document.createElement("h1");
+  hug.innerHTML="🫂";
+  document.body.appendChild(hug);
+
+  for(let i=0;i<30;i++){
+    let kiss=document.createElement("div");
+    kiss.className="heart";
+    kiss.innerHTML="💋";
+    kiss.style.left=Math.random()*100+"vw";
+    kiss.style.animationDuration=(Math.random()*3+2)+"s";
+    document.body.appendChild(kiss);
+  }
+
+  setTimeout(()=>{
+    document.getElementById("main").style.display="none";
+    document.getElementById("rosePage").style.display="block";
+  },2000);
+}
+
+/* ACCEPT BUTTON LOGIC WITH HEART & KISS ANIMATION */
+function accept(){
+  document.getElementById("msg").innerHTML="❤️ Congratulations! You are Wife of Prince ❤️";
+
+  for(let i=0;i<30;i++){
+    let heart=document.createElement("div");
+    heart.className="heart";
+    heart.innerHTML="💖";
+    heart.style.left=Math.random()*100+"vw";
+    heart.style.fontSize=(20+Math.random()*30)+"px";
+    heart.style.animationDuration=(2+Math.random()*3)+"s";
+    document.body.appendChild(heart);
+  }
+
+  for(let i=0;i<30;i++){
+    let kiss=document.createElement("div");
+    kiss.className="heart";
+    kiss.innerHTML="💋";
+    kiss.style.left=Math.random()*100+"vw";
+    kiss.style.fontSize=(20+Math.random()*20)+"px";
+    kiss.style.animationDuration=(2+Math.random()*3)+"s";
+    document.body.appendChild(kiss);
+  }
+}
+</script>
+
+</body>
+</html>
